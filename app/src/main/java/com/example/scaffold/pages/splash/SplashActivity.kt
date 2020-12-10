@@ -1,27 +1,30 @@
 package com.example.scaffold.pages.splash
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.scaffold.R
+import com.example.scaffold.dagger.DaggerSplashComponent
+import com.example.scaffold.dagger.SplashModule
+import kotlinx.android.synthetic.main.activity_splash.*
+import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
 
+    @Inject
     lateinit var viewModel: SplashViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         setContentView(R.layout.activity_splash)
+        DaggerSplashComponent.builder().splashModule(SplashModule(this)).build().inject(this)
         viewModel.test.observe(this, Observer {
-            Log.i("test", "test:" + it)
+            tvContent.text = it
         })
-        Handler().postDelayed({
-            viewModel.test.value = "!23"
-        }, 5000)
+
 //        startActivity(Intent(this, IndexActivity::class.java))
+
+
     }
 }
