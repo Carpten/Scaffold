@@ -1,6 +1,6 @@
-package com.example.common.network
+package com.example.scaffold.network
 
-import com.example.common.network.exception.NetworkException
+import com.example.scaffold.network.exception.NetworkException
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*

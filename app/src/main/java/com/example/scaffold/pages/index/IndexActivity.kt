@@ -13,9 +13,5 @@ class IndexActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_index)
         viewModel = ViewModelProvider(this).get(IndexViewModel::class.java)
-
-
-
-
     }
 }

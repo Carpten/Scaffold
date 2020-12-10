@@ -1,4 +1,4 @@
-package com.example.common.extensions
+package com.example.scaffold.extensions
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.example.common.network
+package com.example.scaffold.network
 
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -1,4 +1,4 @@
-package com.example.common.network.model
+package com.example.scaffold.network.model
 
 open class BaseResponseBean(
     val code: Int,
