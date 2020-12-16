@@ -6,6 +6,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.ConnectException
@@ -16,10 +17,14 @@ object NetHelper {
 
     private lateinit var retrofit: Retrofit
 
-    private const val baseUrl = "http://ue.iwish.site:3000/mock/"
+    private const val baseUrl = "http://ue.iwish.site:3000/mock/60/"
 
     fun init() {
-        val okHttpClient = OkHttpClient().newBuilder().build()
+        val okHttpClient =
+            OkHttpClient().newBuilder()
+                .addNetworkInterceptor(
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                ).build()
         retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())

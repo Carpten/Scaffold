@@ -24,7 +24,7 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
     fun registerClickEvents(view: View) {
         if (view.id == R.id.btnLogin) {
             viewModel.login(ToastCallback(), LogCallback()) {
-                Log.i("tset", "token:$it")
+                Log.i("tset", "token:${it?.token}")
             }
         }
     }

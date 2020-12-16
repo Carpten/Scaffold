@@ -2,8 +2,8 @@ package com.example.scaffold.network.model
 
 import com.example.scaffold.network.exception.ReturnCodeException
 
-class ResponseBean<T>(code: Int, message: String, val data: T) : BaseResponseBean(code, message) {
-
+class ResponseBean<T>(code: Int, message: String, private val data: T) :
+    BaseResponseBean(code, message) {
 
     fun asResult(): T? {
         //成功
