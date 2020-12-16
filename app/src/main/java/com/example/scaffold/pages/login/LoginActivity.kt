@@ -9,6 +9,8 @@ import com.example.scaffold.R
 import com.example.scaffold.annotations.OnClick
 import com.example.scaffold.components.BaseActivity
 import com.example.scaffold.constant.RouteUrls
+import com.example.scaffold.network.callbacks.LogCallback
+import com.example.scaffold.network.callbacks.ToastCallback
 
 @Route(path = RouteUrls.LOGIN)
 class LoginActivity : BaseActivity(R.layout.activity_login) {
@@ -21,7 +23,9 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
     @OnClick([R.id.btnLogin])
     fun registerClickEvents(view: View) {
         if (view.id == R.id.btnLogin) {
-            Log.i("test", "login")
+            viewModel.login(ToastCallback(), LogCallback()) {
+                Log.i("tset", "token:$it")
+            }
         }
     }
 }
