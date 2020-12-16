@@ -1,17 +1,17 @@
 package com.example.scaffold.pages.index
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.scaffold.R
+import com.example.scaffold.components.BaseActivity
+import com.example.scaffold.constant.RouteUrls
 
-class IndexActivity : AppCompatActivity() {
+@Route(path = RouteUrls.INDEX)
+class IndexActivity : BaseActivity(R.layout.activity_index) {
 
-    lateinit var viewModel: IndexViewModel
+    private val viewModel by viewModels<IndexViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_index)
-        viewModel = ViewModelProvider(this).get(IndexViewModel::class.java)
+    override fun init(savedInstanceState: Bundle?) {
     }
 }

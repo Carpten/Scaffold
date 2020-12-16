@@ -1,21 +1,16 @@
 package com.example.scaffold.pages.splash
 
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import com.example.scaffold.R
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.scaffold.components.BaseActivity
+import com.example.scaffold.constant.RouteUrls
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity() {
+@Route(path = RouteUrls.SPLASH)
+class SplashActivity : BaseActivity() {
 
-    private val viewModel by viewModels<SplashViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+    override fun init(savedInstanceState: Bundle?) {
+        route(RouteUrls.LOGIN,finishAfterRoute = true)
     }
 }
