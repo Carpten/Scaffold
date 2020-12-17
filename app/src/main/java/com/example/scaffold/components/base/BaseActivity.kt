@@ -59,11 +59,12 @@ abstract class BaseActivity : AppCompatActivity {
     private fun injectClickAnnotation() {
         val methods: Array<Method> = javaClass.methods
         for (method in methods) {
-            method.getAnnotation(OnClick::class.java)?.ids?.forEach {//通过反射api获取方法上面的注解
+            val onClick = method.getAnnotation(OnClick::class.java)
+            onClick?.ids?.forEach {//通过反射api获取方法上面的注解
                 if (it == -1) return
                 findViewById<View>(it)?.setOnClickListener { v ->
                     try {
-                        if (ClickUtils.isClickAvailable()) {
+                        if (ClickUtils.isClickAvailable() || !onClick.debounce) {//防抖模式会校验0.5s的防抖动
                             val typeParameters = method.parameterTypes
                             if (typeParameters.isEmpty()) {//此方法无参数
                                 method.invoke(this@BaseActivity)
