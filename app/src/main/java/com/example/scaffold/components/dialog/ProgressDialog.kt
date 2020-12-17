@@ -17,7 +17,7 @@ class ProgressDialog(context: Context) : Dialog(context, R.style.ProgressDialog)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.common_dialog_progress)
+        setContentView(R.layout.dialog_progress)
         //按空白处不能取消动画
         setCanceledOnTouchOutside(false)
         setCancelable(false)
@@ -38,7 +38,6 @@ class ProgressDialog(context: Context) : Dialog(context, R.style.ProgressDialog)
     }
 
     override fun show() {
-//        try {
         super.show()
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         progressBar.indeterminateDrawable.clearColorFilter()
@@ -46,9 +45,5 @@ class ProgressDialog(context: Context) : Dialog(context, R.style.ProgressDialog)
         progressBar.alpha = 0f
         progressBar.clearAnimation()
         progressBar.animate().alpha(1f).setStartDelay(300).setDuration(250).start()
-//        } catch (e: Throwable) {
-//        }
     }
-
-
 }
