@@ -1,5 +1,8 @@
 package com.example.scaffold.network.callbacks
 
+/**
+ * Callback空实现
+ */
 open class SimpleCallback<T> : Callback<T> {
     override fun onStart() {}
     override fun onSuccess(data: T?) {}

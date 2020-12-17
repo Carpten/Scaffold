@@ -3,6 +3,10 @@ package com.example.scaffold.network.callbacks
 import android.content.Context
 import com.example.scaffold.components.dialog.ProgressDialog
 
+/**
+ * 等待过程中的转圈圈动作
+ * 在请求开始时显示，请求结束后消失
+ */
 class WaitCallback<T>(val context: Context) : Callback<T> {
     private var dialog: ProgressDialog? = null
 
