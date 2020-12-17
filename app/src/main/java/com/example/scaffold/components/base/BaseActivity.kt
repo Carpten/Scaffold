@@ -1,4 +1,4 @@
-package com.example.scaffold.components
+package com.example.scaffold.components.base
 
 import android.os.Bundle
 import android.view.View

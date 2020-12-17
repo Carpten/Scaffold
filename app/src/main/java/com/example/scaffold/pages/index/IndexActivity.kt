@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.scaffold.R
-import com.example.scaffold.components.BaseActivity
+import com.example.scaffold.components.base.BaseActivity
 import com.example.scaffold.constant.RouteUrls
 
 @Route(path = RouteUrls.INDEX)

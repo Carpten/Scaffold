@@ -7,10 +7,9 @@ import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.scaffold.R
 import com.example.scaffold.annotations.OnClick
-import com.example.scaffold.components.BaseActivity
+import com.example.scaffold.components.base.BaseActivity
 import com.example.scaffold.constant.RouteUrls
-import com.example.scaffold.network.callbacks.LogCallback
-import com.example.scaffold.network.callbacks.ToastCallback
+import com.example.scaffold.utils.Utils
 
 @Route(path = RouteUrls.LOGIN)
 class LoginActivity : BaseActivity(R.layout.activity_login) {
@@ -23,8 +22,9 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
     @OnClick([R.id.btnLogin])
     fun registerClickEvents(view: View) {
         if (view.id == R.id.btnLogin) {
-            viewModel.login(ToastCallback(), LogCallback()) {
-                Log.i("tset", "token:${it?.token}")
+            viewModel.login(this) {
+                Utils.toast("登录成功")
+                route(RouteUrls.INDEX, finishAfterRoute = true)
             }
         }
     }

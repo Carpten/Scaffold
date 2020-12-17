@@ -2,7 +2,7 @@ package com.example.scaffold.pages.splash
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.scaffold.components.BaseActivity
+import com.example.scaffold.components.base.BaseActivity
 import com.example.scaffold.constant.RouteUrls
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,6 +1,7 @@
 package com.example.scaffold.network
 
-import com.example.scaffold.network.callbacks.Callback
+import android.content.Context
+import com.example.scaffold.network.callbacks.*
 import com.example.scaffold.network.exception.NetworkException
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.*
@@ -40,6 +41,7 @@ object NetHelper {
     /**
      * 异常统一处理
      */
+    @Suppress("EXPERIMENTAL_API_USAGE")
     fun <T> request(
         block: suspend CoroutineScope.() -> T?,
         onStart: () -> Unit = {},
@@ -111,5 +113,40 @@ object NetHelper {
                     }
                 }
         }
+    }
+
+
+    /**
+     * 异常统一处理
+     */
+    @Suppress("EXPERIMENTAL_API_USAGE")
+    fun <T> request(
+        context: Context,
+        block: suspend CoroutineScope.() -> T?,
+        onSuccess: (T?) -> Unit = {},
+        toast: Boolean = true,
+        load: Boolean = false,
+        wait: Boolean = false,
+        loadError: Boolean = false
+    ): Job {
+        val callbacks = ArrayList<Callback<T>>()
+        if (toast) {
+            callbacks.add(ToastCallback())
+        }
+        if (load) {
+            callbacks.add(LoadCallback(context))
+        }
+        if (wait) {
+            callbacks.add(WaitCallback(context))
+        }
+        if (loadError) {
+            callbacks.add(LoadErrorCallback(context) {
+                request(context, block, onSuccess, toast, load, wait, loadError)
+            })
+        }
+
+
+        val callbacksArray = callbacks.toTypedArray()
+        return request(block, onSuccess, *callbacksArray)
     }
 }

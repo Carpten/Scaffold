@@ -1,17 +1,15 @@
 package com.example.scaffold.network.callbacks
 
-import com.example.scaffold.utils.Utils
+import android.content.Context
 
-class ToastCallback<T> : Callback<T> {
+class LoadErrorCallback<T>(context: Context, onRetry: () -> Unit) : Callback<T> {
     override fun onStart() {
-
     }
 
     override fun onSuccess(data: T?) {
     }
 
     override fun onError(error: Throwable) {
-        Utils.toast(error.message)
     }
 
     override fun onComplete() {
