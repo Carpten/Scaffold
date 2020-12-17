@@ -23,7 +23,6 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
     fun registerClickEvents(view: View) {
         if (view.id == R.id.btnLogin) {
             viewModel.login(this) {
-                Utils.toast("登录成功")
                 route(RouteUrls.INDEX, finishAfterRoute = true)
             }
         }
