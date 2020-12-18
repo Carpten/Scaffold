@@ -5,16 +5,6 @@ import android.view.View
 interface IViewController {
 
     /**
-     * 显示等待进行条
-     */
-    fun showProgressDialog()
-
-    /**
-     * 隐藏等待进行条
-     */
-    fun dismissProgressDialog()
-
-    /**
      * 显示loading
      */
     fun showLoading()
