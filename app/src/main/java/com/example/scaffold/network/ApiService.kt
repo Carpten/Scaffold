@@ -1,5 +1,6 @@
 package com.example.scaffold.network
 
+import com.example.scaffold.been.DetailBean
 import com.example.scaffold.been.LoginBean
 import com.example.scaffold.network.model.ResponseBean
 import retrofit2.http.Body
@@ -18,13 +19,13 @@ interface ApiService {
     /**
      * 列表
      */
-    @POST("list/list")
-    suspend fun list(@Body body: @JvmSuppressWildcards Map<String, Any>): String
+    @GET("list/list")
+    suspend fun list(): String
 
 
     /**
      * 详情
      */
-    @POST("detail/detail")
-    suspend fun detail(@Body body: @JvmSuppressWildcards Map<String, Any>): ResponseBean<LoginBean>
+    @GET("detail/detail")
+    suspend fun detail(): ResponseBean<DetailBean>
 }

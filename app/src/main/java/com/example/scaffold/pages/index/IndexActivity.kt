@@ -5,7 +5,7 @@ import android.view.View
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.scaffold.R
-import com.example.scaffold.annotations.OnClick
+import com.example.scaffold.annotations.click.OnClick
 import com.example.scaffold.components.base.BaseActivity
 import com.example.scaffold.constant.RouteUrls
 import com.example.scaffold.pages.home.HomeFragment

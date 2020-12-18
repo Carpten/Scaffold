@@ -5,7 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.scaffold.annotations.OnClick
+import com.example.scaffold.annotations.click.ClickInject
+import com.example.scaffold.annotations.click.OnClick
 import com.example.scaffold.utils.ClickUtils
 import java.lang.reflect.Method
 
@@ -17,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injectClickAnnotation()
+        ClickInject.injectClickAnnotation(this)
         init(savedInstanceState)
         registerEventBus()
     }
@@ -49,34 +50,6 @@ abstract class BaseActivity : AppCompatActivity {
         aRouter.navigation()
         if (finishAfterRoute) {
             finish()
-        }
-    }
-
-
-    /**
-     * OnClick注解方法，注测成点击事件
-     */
-    private fun injectClickAnnotation() {
-        val methods: Array<Method> = javaClass.methods
-        for (method in methods) {
-            val onClick = method.getAnnotation(OnClick::class.java)
-            onClick?.ids?.forEach {//通过反射api获取方法上面的注解
-                if (it == -1) return
-                findViewById<View>(it)?.setOnClickListener { v ->
-                    try {
-                        if (ClickUtils.isClickAvailable() || !onClick.debounce) {//防抖模式会校验0.5s的防抖动
-                            val typeParameters = method.parameterTypes
-                            if (typeParameters.isEmpty()) {//此方法无参数
-                                method.invoke(this@BaseActivity)
-                            } else if (typeParameters[0] == View::class.java) {//此方法有参数
-                                method.invoke(this@BaseActivity, v)
-                            }
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-            }
         }
     }
 }

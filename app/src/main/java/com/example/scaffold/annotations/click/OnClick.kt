@@ -1,4 +1,4 @@
-package com.example.scaffold.annotations
+package com.example.scaffold.annotations.click
 
 
 @Target(AnnotationTarget.FUNCTION)
